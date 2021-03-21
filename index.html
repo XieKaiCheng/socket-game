@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="/css/index.css" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <!-- 引入样式 -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"
+    />
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div class="chat">
+        <div class="message">{{msg}}</div>
+        <div class="chat-footer">
+          <div class="text"></div>
+          <div class="send"></div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="list">
+          <div class="item"></div>
+          <div class="item"></div>
+          <div class="item"></div>
+
+          <div class="item"></div>
+          <div class="item"></div>
+          <div class="item"></div>
+
+          <div class="item"></div>
+          <div class="item"></div>
+          <div class="item"></div>
+        </div>
+      </div>
+
+      <div class="detail">
+          <div class="detail-title">
+              历史战绩
+          </div>
+      </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                msg: '123'
+            }
+        })
+      // var socket = io('http://demo2.lamwityee.com/');
+      var socket = io();
+
+      socket.on("chat message", function (msg) {
+        console.log("msg", msg);
+        var item = document.createElement("li");
+        item.textContent = msg;
+        messages.appendChild(item);
+        window.scrollTo(0, document.body.scrollHeight);
+      });
+    </script>
+  </body>
+</html>
