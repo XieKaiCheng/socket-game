@@ -77,4 +77,27 @@ div#app {
     display: flex;
     justify-content: space-around;
     margin: 200px auto 0;
+    color: #3f3f3f;
+}
+
+.detail {
+    width: 300px;
+    height: 440px;
+    border: 1px solid #c0c4cc;
+    box-shadow: 4px 4px 10px 1px #c0c4cc;
+}
+
+.detail-title {
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    height: 20px;
+    line-height: 20px;
 }
