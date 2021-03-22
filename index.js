@@ -5,6 +5,7 @@ const io = require("socket.io")(http);
 const path = require('path')
 
 app.use('/css',  express.static(path.join(__dirname, '/css')));
+app.use('/lib',  express.static(path.join(__dirname, '/lib')));
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
@@ -27,6 +28,15 @@ io.on("connection", (socket) => {
     console.log("message: " + msg);
     io.emit("chat message", msg);
   });
+
+  socket.on("msg", (msg) => {
+    console.log('msg =',msg)
+    io.emit("chat message", msg);
+  })
+
+  socket.on("with-binary", (msg,msg2,msg3) => {
+    console.log('msg', msg,msg2,msg3)
+  })
 });
 
 http.listen(3000, () => {

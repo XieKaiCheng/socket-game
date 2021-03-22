@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css" />
   <!-- 引入组件库 -->
   <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+  <link rel="stylesheet" href="./css/iconfont.css">
 </head>
 
 <body>
@@ -20,17 +21,60 @@
       <div class="chat-list">
         <div class="chat-item">
           <div class="name">Kc:</div>
-          <div class="message"><p>1239021839012839012839012839012380912</p></div>
+          <div class="message">1239021839012839012839012839012380912</div>
+        </div>
+        <div class="chat-item self-chat">
+          <div class="name">CC:</div>
+          <div class="message">{{msg}}</div>
         </div>
         <div class="chat-item">
           <div class="name">CC:</div>
           <div class="message">{{msg}}</div>
         </div>
+        <div class="chat-item self-chat">
+          <div class="name">CC:</div>
+          <div class="message">1239021839012839012839012839012380912</div>
+        </div>
+        <div class="chat-item">
+          <div class="name">Kc:</div>
+          <div class="message">1239021839012839012839012839012380912</div>
+        </div>
+        <div class="chat-item self-chat">
+          <div class="name">CC:</div>
+          <div class="message">{{msg}}</div>
+        </div>
+        <div class="chat-item">
+          <div class="name">CC:</div>
+          <div class="message">{{msg}}</div>
+        </div>
+        <div class="chat-item self-chat">
+          <div class="name">CC:</div>
+          <div class="message">1239021839012839012839012839012380912</div>
+        </div>
+        <div class="chat-item">
+          <div class="name">Kc:</div>
+          <div class="message">1239021839012839012839012839012380912</div>
+        </div>
+        <div class="chat-item self-chat">
+          <div class="name">CC:</div>
+          <div class="message">{{msg}}</div>
+        </div>
+        <div class="chat-item">
+          <div class="name">CC:</div>
+          <div class="message">{{msg}}</div>
+        </div>
+        <div class="chat-item self-chat">
+          <div class="name">CC:</div>
+          <div class="message">1239021839012839012839012839012380912</div>
+        </div>
       </div>
 
       <div class="chat-footer">
-        <div class="text"></div>
-        <div class="send"></div>
+        <div class="text">
+          <el-input placeholder="请输入内容" v-model="input" clearable>
+          </el-input>
+        </div>
+        <div class="send" @click="sendMsg(input)"><span class="iconfont icon-send"></span></div>
       </div>
     </div>
 
@@ -64,22 +108,34 @@
   </div>
   <script src="/socket.io/socket.io.js"></script>
   <script>
-    var app = new Vue({
-      el: '#app',
-      data: {
-        msg: '123'
-      }
-    })
     // var socket = io('http://demo2.lamwityee.com/');
     var socket = io();
 
-    socket.on("chat message", function (msg) {
-      console.log("msg", msg);
-      var item = document.createElement("li");
-      item.textContent = msg;
-      messages.appendChild(item);
-      window.scrollTo(0, document.body.scrollHeight);
-    });
+    // socket.on("chat message", function (msg) {
+    //   console.log("msg", msg);
+    //   var item = document.createElement("li");
+    //   item.textContent = msg;
+    //   messages.appendChild(item);
+    //   window.scrollTo(0, document.body.scrollHeight);
+    // });
+
+    var app = new Vue({
+      el: '#app',
+      data: {
+        msg: '123',
+        input: '123'
+      },
+      methods: {
+        handleItem(index) {
+
+        },
+        sendMsg(msg) {
+          console.log('msg',msg)
+          socket.emit('msg',msg)
+          socket.emit("with-binary", 1, "2", { 3: "4" });
+        }
+      }
+    })
   </script>
 </body>
 
